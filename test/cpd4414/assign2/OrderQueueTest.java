@@ -14,8 +14,11 @@
  * limitations under the License.
  */
 
-package cpd4414.assign1;
+package cpd4414.assign2;
 
+import cpd4414.assign2.OrderQueue;
+import cpd4414.assign2.Purchase;
+import cpd4414.assign2.Order;
 import java.util.Date;
 import org.junit.After;
 import org.junit.AfterClass;

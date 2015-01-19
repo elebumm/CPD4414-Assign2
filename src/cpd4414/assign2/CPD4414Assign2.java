@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package cpd4414.assign1;
-
-import java.util.ArrayDeque;
-import java.util.Date;
-import java.util.Queue;
+package cpd4414.assign2;
 
 /**
  *
  * @author Len Payne <len.payne@lambtoncollege.ca>
  */
-public class OrderQueue {
-    Queue<Order> orderQueue = new ArrayDeque<>();
-    
-    public void add(Order order) {
-        orderQueue.add(order);
-        order.setTimeReceived(new Date());
+public class CPD4414Assign2 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
     }
+    
 }

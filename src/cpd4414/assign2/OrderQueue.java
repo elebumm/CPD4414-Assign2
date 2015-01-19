@@ -14,34 +14,21 @@
  * limitations under the License.
  */
 
-package cpd4414.assign1;
+package cpd4414.assign2;
+
+import java.util.ArrayDeque;
+import java.util.Date;
+import java.util.Queue;
 
 /**
  *
  * @author Len Payne <len.payne@lambtoncollege.ca>
  */
-public class Purchase {
-    private String productId;
-    private int quantity;
-
-    public Purchase(String productId, int quantity) {
-        this.productId = productId;
-        this.quantity = quantity;
-    }
+public class OrderQueue {
+    Queue<Order> orderQueue = new ArrayDeque<>();
     
-    public String getProductId() {
-        return productId;
-    }
-
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void add(Order order) {
+        orderQueue.add(order);
+        order.setTimeReceived(new Date());
     }
 }

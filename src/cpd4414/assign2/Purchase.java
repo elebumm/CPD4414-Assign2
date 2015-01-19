@@ -14,19 +14,34 @@
  * limitations under the License.
  */
 
-package cpd4414.assign1;
+package cpd4414.assign2;
 
 /**
  *
  * @author Len Payne <len.payne@lambtoncollege.ca>
  */
-public class CPD4414Assign1 {
+public class Purchase {
+    private String productId;
+    private int quantity;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public Purchase(String productId, int quantity) {
+        this.productId = productId;
+        this.quantity = quantity;
     }
     
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

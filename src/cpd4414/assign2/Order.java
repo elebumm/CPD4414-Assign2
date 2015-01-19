@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cpd4414.assign1;
+package cpd4414.assign2;
 
 import java.util.ArrayList;
 import java.util.Date;
