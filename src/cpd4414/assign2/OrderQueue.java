@@ -16,6 +16,7 @@
 
 package cpd4414.assign2;
 
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Date;
 import java.util.Queue;
@@ -31,4 +32,25 @@ public class OrderQueue {
         orderQueue.add(order);
         order.setTimeReceived(new Date());
     }
+
+
+public String orderCheck(Order order) throws IOException{
+    String message = null;
+    if (order.getCustomerId() == "" || order.getCustomerName() == ""){
+        throw new IOException("Customer Id and Customer Name is null. Please try again.");
+    }
+    else if (order.getListOfPurchases().isEmpty()){
+        throw new IOException("List of purchases is empty. Please add some entries and try again.");
+    }
+    
+    return message;
+}
+
+public String nextOrder(Order order) throws IOException{
+    String message = null;
+    
+    
+    
+    return message;
+}
 }
