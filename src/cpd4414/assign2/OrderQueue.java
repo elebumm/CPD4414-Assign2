@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package cpd4414.assign2;
 
-import java.io.IOException;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -26,31 +26,44 @@ import java.util.Queue;
  * @author Len Payne <len.payne@lambtoncollege.ca>
  */
 public class OrderQueue {
+
     Queue<Order> orderQueue = new ArrayDeque<>();
-    
-    public void add(Order order) {
+    List<Order> processed = new ArrayList<>();
+
+    public void add(Order order) throws Exception {
         orderQueue.add(order);
+        order.setTimeReceived(new Date());
+        if (order.getCustomerId() == "" && order.getCustomerName() == "") {
+            throw new Exception("Customer Id and Customer Name is null. Please try again.");
+        }
+
+        if (order.getListOfPurchases().isEmpty()) {
+            throw new Exception("List of Purchases are empty");
+        }
+        orderQueue.add(order);
+    }
+
+    public void setTimeReceived(Order order) {
         order.setTimeReceived(new Date());
     }
 
-
-public String orderCheck(Order order) throws IOException{
-    String message = null;
-    if (order.getCustomerId() == "" || order.getCustomerName() == ""){
-        throw new IOException("Customer Id and Customer Name is null. Please try again.");
+    public void setTimeProcessed(Order order) {
+        order.setTimeProcessed(new Date());
     }
-    else if (order.getListOfPurchases().isEmpty()){
-        throw new IOException("List of purchases is empty. Please add some entries and try again.");
-    }
-    
-    return message;
-}
 
-public String nextOrder(Order order) throws IOException{
-    String message = null;
-    
-    
-    
-    return message;
-}
+    public void orderProcessed(Order order) throws Exception {
+        if (order.getTimeReceived() == null) {
+            throw new Exception("Order has no time recieved");
+        }
+        processed.add(order);
+        orderQueue.remove(order);
+    }
+
+    public Order returnQueue() {
+        if (orderQueue.isEmpty()) {
+            System.out.println("Never a null moment");
+            return null;
+        }
+        return orderQueue.element();
+    }
 }

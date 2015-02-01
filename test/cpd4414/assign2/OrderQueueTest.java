@@ -53,7 +53,7 @@ public class OrderQueueTest {
     }
 
     @Test
-    public void testWhenCustomerExistsAndPurchasesExistThenTimeReceivedIsNow() {
+    public void testWhenCustomerExistsAndPurchasesExistThenTimeReceivedIsNow() throws Exception {
         OrderQueue orderQueue = new OrderQueue();
         Order order = new Order("CUST00001", "ABC Construction");
         order.addPurchase(new Purchase("PROD0004", 450));
@@ -65,4 +65,52 @@ public class OrderQueueTest {
         assertTrue(Math.abs(result - expResult) < 1000);
     }
     
+    @Test 
+    public void WhenCustomerNameAndIdDoNotExistThrowException(){
+        boolean exThrow = false;
+        OrderQueue orderQueue = new OrderQueue();
+        Order order = new Order("","");
+        order.addPurchase(new Purchase("CPRO0000", 300));
+        order.addPurchase(new Purchase("CPRO0000", 300));
+        try {
+            orderQueue.add(order);
+        }
+        catch(Exception ex){
+            exThrow = true;
+        }
+    
+        assertTrue(exThrow);
+    
+    }
+    
+    @Test
+    public void WhenListOfPurchasesDontExistThrowException(){
+        boolean exThrow = false;
+        OrderQueue orderQueue = new OrderQueue();
+        Order order = new Order("CUST00001","Lewis Menelaws");
+        try {
+            orderQueue.add(order);
+        }
+        catch(Exception ex){
+            exThrow = true;
+        }
+        assertTrue(exThrow);
+        
+    }
+    
+    @Test
+    public void RequestForOrderInSystemThenReturnOrder() throws Exception {
+        
+        OrderQueue orderQueue = new OrderQueue();
+        Order order = new Order("CUST00001","Lewis Menelaws");
+        order.addPurchase(new Purchase("CPRO0000", 300));
+        order.addPurchase(new Purchase("CPRO0000", 300));
+        orderQueue.add(order);
+        orderQueue.setTimeReceived(order);
+        Order result = order;
+        Order exResult = orderQueue.returnQueue();
+        assertEquals(result, exResult);
+    }
+    
+   
 }
