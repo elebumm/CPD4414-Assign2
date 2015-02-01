@@ -29,6 +29,7 @@ public class OrderQueue {
 
     Queue<Order> orderQueue = new ArrayDeque<>();
     List<Order> processed = new ArrayList<>();
+    List<Order> fulfilled = new ArrayList<>();
 
     public void add(Order order) throws Exception {
         orderQueue.add(order);
@@ -66,4 +67,16 @@ public class OrderQueue {
         }
         return orderQueue.element();
     }
+
+    public void orderFulfilled(Order order) throws Exception {
+        if (order.getTimeReceived() == null) {
+            throw new Exception("Order has no time recieved");
+        }
+        if (order.getTimeProcessed() == null){
+            throw new Exception("Order has not time processed");
+        }
+        fulfilled.add(order);
+        processed.remove(order);
+    }
+
 }
